@@ -48,6 +48,10 @@ public class UserController {
 	public String retrieveCoursesForStudent(@PathVariable String empId) {
 		return "employee";
 	}
-   
+    
+    @GetMapping("/employess/{empId}")
+	public String testrole(@PathVariable String empId) {
+		return "roletests";
+	}
 
 }

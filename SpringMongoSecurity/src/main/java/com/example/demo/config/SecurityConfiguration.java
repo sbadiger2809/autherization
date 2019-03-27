@@ -20,40 +20,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-
+	  
 	
-	
-	  @Override 
-	  protected void configure(HttpSecurity http) throws Exception 
-	  {
-	 http.authorizeRequests() .antMatchers("/home").permitAll() // allow all at
-	 // .antMatchers("/user/**").hasRole("ADMIN")
-	  .anyRequest().authenticated(); // authenticate everything else! }
-	  }
-	
-	 @Override
-	 public void configure(AuthenticationManagerBuilder auth) throws
-	Exception {
-		 auth .userDetailsService(userDetailsService) .passwordEncoder(new
-	  BCryptPasswordEncoder()); 
-		 }
-	 
 	/*
 	 * @Override protected void configure(AuthenticationManagerBuilder auth) throws
 	 * Exception {
 	 * auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.
-	 * crypto.password.NoOpPasswordEncoder.getInstance()).withUser("user1").password
-	 * ("secret1") .roles("USER").and().withUser("admin1").password("secret1")
-	 * .roles("USER", "ADMIN"); }
+	 * crypto.password.NoOpPasswordEncoder.getInstance())
+	 * .withUser("user1").password("secret1") .roles("USER"). and()
+	 * .withUser("admin1").password("secret1").roles("USER", "ADMIN"); }
 	 */
 
-	/*// Authorization : Role -> Access
-	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests()
-		.antMatchers("/employess/**")
-				.hasRole("USER").antMatchers("/**").hasRole("ADMIN").
-				anyRequest().fullyAuthenticated().and()
-				.csrf().disable().headers().frameOptions().disable();
-	}*/
+	/*
+	 * // Authorization : Role -> Access protected void configure(HttpSecurity http)
+	 * throws Exception { http.httpBasic().and().authorizeRequests()
+	 * .antMatchers("/employess/**").hasRole("USER") .antMatchers("/test") .
+	 * anyRequest().fullyAuthenticated() .and()
+	 * .csrf().disable().headers().frameOptions().disable(); }
+	 */
 
 }
