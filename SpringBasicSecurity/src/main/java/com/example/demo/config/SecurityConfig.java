@@ -5,6 +5,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +15,7 @@ import com.example.demo.service.MongoUserDetailsService;
 
 @Configuration
 @EnableConfigurationProperties
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	  @Autowired
@@ -21,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	  @Override
 	  protected void configure(HttpSecurity http) throws Exception {
+		   System.out.println("HttpSecurity::==>");
 	    http
 	      .csrf().disable()
 	      .authorizeRequests().anyRequest().authenticated()
@@ -35,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	  
 	  @Override
 	  public void configure(AuthenticationManagerBuilder builder) throws Exception {
+	   System.out.println("AuthenticationManagerBuilder::==>");
 	    builder.userDetailsService(userDetailsService);
 	  }
 	

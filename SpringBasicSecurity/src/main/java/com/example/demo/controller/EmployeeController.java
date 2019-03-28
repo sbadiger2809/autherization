@@ -17,15 +17,25 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	@PreAuthorize("hasAuthority('USER')")  
 	@GetMapping("/employess/{empId}")
 	public Employee retrieveCoursesForStudent(@PathVariable String empId) {
+	System.out.println("retrieveCoursesForStudent::==>");
 		return employeeService.retrieveCourses(empId);
 	}
 	
-	
+		
+	@PreAuthorize("hasAuthority('ADMIN')")  
 	@GetMapping("/test")
 	public String retrieveCoursesForStudent() {
 		return "Test";
 	}
 	
+  // @PreAuthorize("@currentUserService.canAccessUser(principal, #name)") 
+	//@PreAuthorize("@currentUserService.canAccessTest( #name)") 
+	 @PreAuthorize("@currentUserService.canAccessUserTest(principal, #name)") 
+	@GetMapping("/demo/{name}")
+	public String demotest(@PathVariable String name) {
+		return "Test";
+	}
 }
